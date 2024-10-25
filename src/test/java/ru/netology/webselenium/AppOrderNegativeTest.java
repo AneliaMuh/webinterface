@@ -40,7 +40,6 @@ public class AppOrderNegativeTest {
     //невалидное имя
     @Test
     public void shouldSNegativeTestNotValidName() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Anelia Mukhambetova");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79271234567");
         driver.findElement(By.className("checkbox__box")).click();
@@ -54,7 +53,6 @@ public class AppOrderNegativeTest {
     //невалидный номер телефона
     @Test
     public void shouldSNegativeTestNotValidPhone() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Анелия Мухамбетова");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("88888888888");
         driver.findElement(By.className("checkbox__box")).click();
@@ -68,7 +66,6 @@ public class AppOrderNegativeTest {
     //пустое поле имени
     @Test
     public void shouldSNegativeTestEmptyName() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("88888888888");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button")).click();
@@ -81,27 +78,21 @@ public class AppOrderNegativeTest {
     //пустое поле телефон
     @Test
     public void shouldSNegativeTestEmptyPhone() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Анелия Мухамбетова");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("88888888888");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button")).click();
-
         String expected = "Поле обязательно для заполнения";
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub")).getText().trim();
-
         assertEquals(expected, actual);
     }
 
     // не отмечен чекбокс
     @Test
     public void shouldNegativeTestUnchecked() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мухамбетова Анелия");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79271234567");
         driver.findElement(By.className("button")).click();
 
         assertTrue(driver.findElement(By.cssSelector("[data-test-id=agreement].input_invalid")).isDisplayed());
-        ;
     }
 }
